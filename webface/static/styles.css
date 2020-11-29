@@ -11,7 +11,7 @@ h1, h2, h3 {
 }
 
 h1 a {
-  color: #bb8800; 
+  color: pink; 
 }
 
 nav ul {
@@ -26,13 +26,13 @@ nav ul {
     }
     nav ul li a {
       display: block;
-      color: white;
-      background-color: #324b79;
+      color: grey;
+      background-color: lightblue;
       border-radius: 25px 50px 0px;
       padding: 1ex 2ex; }
     nav ul li a:hover {
-      color: #324b72;
-      background-color: white;
+      color: lightblue;
+      background-color: grey;
     }
   nav img {
     float:left;
@@ -41,18 +41,18 @@ nav ul {
 footer {
   padding: 0.1ex 2em;
   margin-top: 2em;
-  border-top: solid 2px #FACC15;
+  border-top: pink solid 2px;
   background-color: #ecc8f0; }
 
 .login {
   display: inline-block;
   float: right;
   width: 30%;
-  border: orange solid 2px;
+  border: pink solid 2px;
   padding: 1ex; }
   
 .odd {
-    background-color: orange;
+    background-color: pink;
 }
 
 .even {
