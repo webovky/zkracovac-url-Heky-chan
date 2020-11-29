@@ -23,9 +23,9 @@
   <ul>
     <li><a href="{{ url_for('index') }}">Index</a></li>
     <li><a href="{{ url_for('info') }}">Info</a></li>
-    <li><a href="{{ url_for('abc') }}">ABC</a></li>
+    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    <li><a href="{{ url_for('adduser') }}">New Account</a></li>
   </ul></nav>
-
 
 {% block obsah %}
 
@@ -40,8 +40,6 @@ Startovací šablona pro webový framework Flask.
 
 {#{% endfilter %}#}
 
-
-
 {% endblock obsah %}
 
 <footer>
@@ -54,11 +52,11 @@ Užitečné odkazy:
 * <a href="https://flask.palletsprojects.com/">Flask</a>, 
 * <a href="https://jinja.palletsprojects.com/templates/">Jinja2</a>
 
+{% for message in get_flashed_messages() %}
+    <div class ="div" role="alert">{{ message }}</div>
+{% endfor %}
 {#{% endfilter %}#}
 </footer>
-
-
-
 
 </body>
 </html>
