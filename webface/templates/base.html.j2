@@ -22,13 +22,14 @@
   <p><img src="{{ url_for('static', filename='flask-icon.png') }}" /></p>
   <ul>
     <li><a href="{{ url_for('index') }}">Index</a></li>
-    <li><a href="{{ url_for('info') }}">Info</a></li>
+    <li><a href="{{ url_for('login') }}">Login</a></li>
     <li><a href="{{ url_for('logout') }}">Logout</a></li>
     <li><a href="{{ url_for('adduser') }}">New Account</a></li>
   </ul></nav>
 
 {% block obsah %}
-
+<br>
+<br>
 {#{% filter markdown %}#}
 
 # Flask

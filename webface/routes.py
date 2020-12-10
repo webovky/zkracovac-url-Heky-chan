@@ -42,15 +42,14 @@ def adduser():
 @app.route("/adduser/", methods=["POST"])
 @db_session
 def adduser_post():
-    login = None
-    passwd1 = None
-    passwd2 = None
-    user = User.get(email="nozka@spseol.cz")
-    user = User[login]
+    login = request.form.get("login")
+    passwd1 = request.form.get("passwd1")
+    passwd2 = request.form.get("passwd2")
+    user = User.get(login=login)
     if user:
         flash("Daný uživatel již existuje")
         print(user.login, user.password)
-    if len(passwd1) >= 6 and passwd1 == passwd2:
+    elif len(passwd1) >= 6 and passwd1 == passwd2:
         user = User(login=login, password=generate_password_hash(passwd1))
         flash("účet vytvořen")
     else:
@@ -58,20 +57,21 @@ def adduser_post():
         return redirect(url_for("adduser"))
     return redirect(url_for("index"))
 ######################################################################################
-@app.route("/login/")
+@app.route("/login/", methods=["GET"])
 def login():
     return render_template("login.html.j2")
 ######################################################################################
-@app.route("/login/", methods=["POST"])
+@app.route("/login/",methods=["POST"])
+@db_session
 def login_post():
-    login = None
-    passwd = None
-    user = User[login]
-    if user and check_password_hash(user.password, passwd):
+    login = request.form.get("login")
+    passwd = request.form.get("passwd")
+    user = User.get(login=login)
+    if user and passwd and check_password_hash(user.password, passwd):
         session["user"] = login
-        flash("Přihlášení proběhlo úspěšně")
+        flash("úspěšně jsi se přihlásil")
     else:
-        flash("Nezprávné údaje")
+        flash("nesprávné přihlašovací údaje")
     return redirect(url_for("index"))
 ######################################################################################
 @app.route("/logout/")
