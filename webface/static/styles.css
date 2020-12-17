@@ -59,5 +59,17 @@ footer {
     background-color: lightblue;
 }
 
+.alert {
+  animation-name: flash;
+   animation-duration: 0.2s;
+   animation-timing-function: linear;
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+   animation-play-state: running;
+}
 
+@keyframes flash {
+   from {color: red;}
+   to {color: black;}
+}
 /*# sourceMappingURL=styles.css.map */

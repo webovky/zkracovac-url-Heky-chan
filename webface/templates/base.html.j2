@@ -22,9 +22,10 @@
   <p><img src="{{ url_for('static', filename='flask-icon.png') }}" /></p>
   <ul>
     <li><a href="{{ url_for('index') }}">Index</a></li>
+    <li><a href="{{ url_for('adduser') }}">New Account</a></li>
     <li><a href="{{ url_for('login') }}">Login</a></li>
     <li><a href="{{ url_for('logout') }}">Logout</a></li>
-    <li><a href="{{ url_for('adduser') }}">New Account</a></li>
+    <li><a href="{{ url_for('shortener') }}">Shortener</a></li>
   </ul></nav>
 
 {% block obsah %}
@@ -38,6 +39,10 @@ Startovací šablona pro webový framework Flask.
 
 ![Flaštička]({{ url_for('static', filename='flask.png') }})
 ![Flaštičky]({{ url_for('static', filename='flasks.png') }})
+
+{% for message in get_flashed_messages() %}
+    <div class ="div" role="alert">{{ message }}</div>
+{% endfor %}
 
 {#{% endfilter %}#}
 
@@ -53,11 +58,10 @@ Užitečné odkazy:
 * <a href="https://flask.palletsprojects.com/">Flask</a>, 
 * <a href="https://jinja.palletsprojects.com/templates/">Jinja2</a>
 
-{% for message in get_flashed_messages() %}
-    <div class ="div" role="alert">{{ message }}</div>
-{% endfor %}
+
 {#{% endfilter %}#}
 </footer>
+
 
 </body>
 </html>

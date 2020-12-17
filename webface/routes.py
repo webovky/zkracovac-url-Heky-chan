@@ -18,10 +18,10 @@ def login_required(function):
     return wrapper
 ######################################################################################
 @app.route("/", methods=["GET"])
+@db_session
 def index():
     shortcut = "".join([random.choice(string.ascii_letters) for i in range(7)])
     print(shortcut)
-######################################################################################
     if "user" in session:
         user = User.get(login=session["user"])
         for addr in user.addresses:
@@ -29,6 +29,7 @@ def index():
     return render_template("base.html.j2")
 ######################################################################################
 @app.route("/<string:shortcut>", methods=["GET"])
+@db_session
 def short_redirect(shortcut):
     shortener = Shortener.get(shortcut=shortcut)
     if shortener.user:
@@ -36,6 +37,7 @@ def short_redirect(shortcut):
     return render_template("base.html.j2")
 ######################################################################################
 @app.route("/adduser/", methods=["GET"])
+@db_session
 def adduser():
     return render_template("adduser.html.j2")
 ######################################################################################
@@ -58,6 +60,7 @@ def adduser_post():
     return redirect(url_for("index"))
 ######################################################################################
 @app.route("/login/", methods=["GET"])
+@db_session
 def login():
     return render_template("login.html.j2")
 ######################################################################################
@@ -65,7 +68,7 @@ def login():
 @db_session
 def login_post():
     login = request.form.get("login")
-    passwd = request.form.get("passwd")
+    passwd = request.form.get("password")
     user = User.get(login=login)
     if user and passwd and check_password_hash(user.password, passwd):
         session["user"] = login
@@ -75,8 +78,15 @@ def login_post():
     return redirect(url_for("index"))
 ######################################################################################
 @app.route("/logout/")
+@db_session
 def logout():
     session.pop("user", None)
     flash("Odhlášení proběhlo úspěšně")
     return render_template("base.html.j2")
+######################################################################################
+@app.route("/shortener/", methods=["GET"])
+@login_required
+@db_session
+def shortener():
+    return render_template("shortener.html.j2")
 ######################################################################################
