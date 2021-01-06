@@ -1,9 +1,15 @@
 {% extends "base.html.j2" %}
 
 {% block obsah %}
+<h2>URL Shortener</h2>
 
-<h2>Shortener</h2>
+<form method="post">
+    <input type="text" id="s" name="zkracovac" placeholder="zadej url" style="width:77%;">
+    <input type="submit" value="Zkrátit" />
+</form>
+<h3>{{"Zkrácená Url:   "}}</h3>
+<p>{{zprava}}</p>
+<h3>{{"Původní Url:   "}}</h3>
+<p style="font-size:10px">{{adresa}}</p>
 
-<p><input type="text"     name="ulr" placeholder="vložte url"/> </p>
-<p> <input type="submit" value="zkrátit" /> </p>
 {% endblock obsah %}

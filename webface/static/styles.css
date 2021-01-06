@@ -46,7 +46,6 @@ footer {
 
 .login {
   display: inline-block;
-  float: right;
   width: 30%;
   border: pink solid 2px;
   padding: 1ex; }
@@ -59,13 +58,21 @@ footer {
     background-color: lightblue;
 }
 
-.alert {
-  animation-name: flash;
-   animation-duration: 0.2s;
-   animation-timing-function: linear;
-   animation-iteration-count: infinite;
-   animation-direction: alternate;
-   animation-play-state: running;
+.center {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translate(-50%, -50%);
+  border: 2.5px solid lightblue ;
+  padding: 10px;
+}
+
+.flash {
+  position: absolute
+}
+
+small {
+  font-size: smaller;
 }
 
 @keyframes flash {

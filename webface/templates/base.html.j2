@@ -40,13 +40,13 @@ Startovací šablona pro webový framework Flask.
 ![Flaštička]({{ url_for('static', filename='flask.png') }})
 ![Flaštičky]({{ url_for('static', filename='flasks.png') }})
 
-{% for message in get_flashed_messages() %}
-    <div class ="div" role="alert">{{ message }}</div>
-{% endfor %}
-
 {#{% endfilter %}#}
 
 {% endblock obsah %}
+
+{% for message in get_flashed_messages() %}
+    <div class ="center" role="alert" style="width:77%;">{{ message }}</div>
+{% endfor %}
 
 <footer>
 {#{% filter markdown %}#}
@@ -57,7 +57,6 @@ Užitečné odkazy:
 * <a href="http://docs.python.org">Python</a>, 
 * <a href="https://flask.palletsprojects.com/">Flask</a>, 
 * <a href="https://jinja.palletsprojects.com/templates/">Jinja2</a>
-
 
 {#{% endfilter %}#}
 </footer>

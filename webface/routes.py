@@ -7,6 +7,7 @@ from pony.orm import db_session
 from .models import User, Shortener
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import render_template, request, redirect, url_for, session, flash
+import pyshorteners
 ######################################################################################
 def login_required(function):
     @functools.wraps(function)
@@ -90,3 +91,14 @@ def logout():
 def shortener():
     return render_template("shortener.html.j2")
 ######################################################################################
+@app.route("/shortener/", methods=["POST"])
+@login_required
+@db_session
+def shortener_post():
+    url = request.form.get("zkracovac")
+    adresa = url
+    s = pyshorteners.Shortener().tinyurl.short(url)
+    zprava = s
+    return render_template("shortener.html.j2", zprava = zprava, adresa = adresa)
+######################################################################################
+    
