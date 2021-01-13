@@ -8,6 +8,7 @@ from .models import User, Shortener
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import render_template, request, redirect, url_for, session, flash
 import pyshorteners
+import random
 ######################################################################################
 def login_required(function):
     @functools.wraps(function)
@@ -86,19 +87,22 @@ def logout():
     return render_template("base.html.j2")
 ######################################################################################
 @app.route("/shortener/", methods=["GET"])
-@login_required
 @db_session
 def shortener():
     return render_template("shortener.html.j2")
 ######################################################################################
-@app.route("/shortener/", methods=["POST"])
-@login_required
+@app.route("/shortener/", methods=["GET","POST"])
 @db_session
 def shortener_post():
+    historie = []
+
     url = request.form.get("zkracovac")
     adresa = url
     s = pyshorteners.Shortener().tinyurl.short(url)
-    zprava = s
-    return render_template("shortener.html.j2", zprava = zprava, adresa = adresa)
+    zkratka = s
+    if "user" in session:
+        historie.append(zkratka)
+        return render_template("shortener.html.j2", zkratka = zkratka, adresa = adresa, historie = ('\n'.join(map(str, historie))))
+    else:
+        return render_template("shortener.html.j2", zkratka = zkratka, adresa = adresa) 
 ######################################################################################
-    
