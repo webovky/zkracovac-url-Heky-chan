@@ -22,13 +22,15 @@
   <p><img src="{{ url_for('static', filename='flask-icon.png') }}" /></p>
   <ul>
     <li><a href="{{ url_for('index') }}">Index</a></li>
-    <li><a href="{{ url_for('info') }}">Info</a></li>
-    <li><a href="{{ url_for('abc') }}">ABC</a></li>
+    <li><a href="{{ url_for('adduser') }}">New Account</a></li>
+    <li><a href="{{ url_for('login') }}">Login</a></li>
+    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    <li><a href="{{ url_for('shortener') }}">Shortener</a></li>
   </ul></nav>
 
-
 {% block obsah %}
-
+<br>
+<br>
 {#{% filter markdown %}#}
 
 # Flask
@@ -40,9 +42,11 @@ Startovací šablona pro webový framework Flask.
 
 {#{% endfilter %}#}
 
-
-
 {% endblock obsah %}
+
+{% for message in get_flashed_messages() %}
+    <div class ="center" role="alert" style="width:77%;">{{ message }}</div>
+{% endfor %}
 
 <footer>
 {#{% filter markdown %}#}
@@ -56,8 +60,6 @@ Užitečné odkazy:
 
 {#{% endfilter %}#}
 </footer>
-
-
 
 
 </body>
